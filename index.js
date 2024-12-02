@@ -17,8 +17,13 @@ server.get('/sobre', (req, res) =>{
     return res.send('Minha página sobre')
 });
 //cria rota com parâmetro / AULA
-server.get('/ola/:nome/:cargo', (req, res) => {
-    res.send(req.params)
+server.get('/ola/:nome/:cargo/:cor', (req, res) => {
+    res.send(
+        "<h1>Olá, " + req.params.nome + "</h1>" + //HTML no meio da resposta
+        "<h2>Seu cargo é " + req.params.cargo+ "</h2>" +
+        "<h3>Sua cor favorita é: " + req.params.cor+ "</h3>"
+    );
+
 })
 //
 server.get('/section/:noticia', (req, res) => {
