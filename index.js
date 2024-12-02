@@ -6,20 +6,25 @@ server.use(express.json());
 
 //cria rotas
 server.get('/', function (req, res) {
-    res.send("Olá mundo");
+    res.send("Bem vindo ao meu servidor!");
 });
-
-server.get('/teste', (req, res) => {
+server.get('/blog', (req, res) => {
     return res.json({ //retorna um JSON como resposta
-        message: "Hello world" 
+    message: "Hello world" 
     });
 });
+server.get('/sobre', (req, res) =>{
+    return res.send('Minha página sobre')
+});
+//cria rota com parâmetro / AULA
+server.get('/ola/:nome/:cargo', (req, res) => {
+    res.send(req.params)
+})
+//
+server.get('/section/:noticia', (req, res) => {
+    res.send(req.params)
+})
 
-server.get('/admin', (req, res) => {
-    return res.json({
-        message: "Você acessou a rota /admin"
-    });
-});
 
 //porta
 server.listen(302, () => {
