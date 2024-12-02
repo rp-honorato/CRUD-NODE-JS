@@ -6,7 +6,7 @@ server.use(express.json());
 
 //cria rotas
 server.get('/', function (req, res) {
-    res.send("Bem vindo ao meu servidor!");
+    res.sendFile(__dirname + "/html/index.html"); //exibe arquivo HTML
 });
 server.get('/blog', (req, res) => {
     return res.json({ //retorna um JSON como resposta
@@ -14,13 +14,13 @@ server.get('/blog', (req, res) => {
     });
 });
 server.get('/sobre', (req, res) =>{
-    return res.send('Minha página sobre')
+    res.sendFile(__dirname + "/html/sobre.html")
 });
 //cria rota com parâmetro / AULA
 server.get('/ola/:nome/:cargo/:cor', (req, res) => {
     res.send(
         "<h1>Olá, " + req.params.nome + "</h1>" + //HTML no meio da resposta
-        "<h2>Seu cargo é " + req.params.cargo+ "</h2>" +
+        "<h2>Seu cargo é: " + req.params.cargo+ "</h2>" +
         "<h3>Sua cor favorita é: " + req.params.cor+ "</h3>"
     );
 
