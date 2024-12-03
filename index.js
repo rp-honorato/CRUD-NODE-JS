@@ -29,13 +29,13 @@ server.get('/ola/:nome/:cargo/:cor', (req, res) => {
 });
 //
 server.get('/usuarios', (req, res) => {
-    res.json(users)
+    res.status(200).json(users)
 });
 
 server.post('/usuarios', (req, res) => {
     users.push(req.body)
 
-    res.send('Ok, deu certo!')
+    res.status(201).json(req.body) //responde com um status
 
 })
 
@@ -43,3 +43,7 @@ server.post('/usuarios', (req, res) => {
 server.listen(302, () => {
     console.log("Servidor rodando na URL http://localhost:302/")
 })
+
+//Dados do Banco
+//Usuário: rpedrohonorato
+//Pass: 7E2Z15Zv59npjtTL
