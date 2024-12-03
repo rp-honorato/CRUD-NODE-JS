@@ -43,7 +43,3 @@ server.post('/usuarios', (req, res) => {
 server.listen(302, () => {
     console.log("Servidor rodando na URL http://localhost:302/")
 })
-
-//Dados do Banco
-//Usuário: rpedrohonorato
-//Pass: 7E2Z15Zv59npjtTL
