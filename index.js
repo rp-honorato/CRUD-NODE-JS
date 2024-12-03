@@ -1,5 +1,14 @@
-const express = require('express'); //importa o módulo express
+import express from 'express';
 const server = express();
+
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
+
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 //faz com que o express entenda JSON
 server.use(express.json());
@@ -32,8 +41,15 @@ server.get('/usuarios', (req, res) => {
     res.status(200).json(users)
 });
 
-server.post('/usuarios', (req, res) => {
-    users.push(req.body)
+server.post('/usuarios', async (req, res) => {
+
+    await prisma.user.create({
+        data:{
+            email: req.body.email,   
+            name: req.body.name,    
+            age: req.body.age
+        }
+    })
 
     res.status(201).json(req.body) //responde com um status
 
@@ -44,6 +60,3 @@ server.listen(302, () => {
     console.log("Servidor rodando na URL http://localhost:302/")
 })
 
-//Dados do Banco
-//Usuário: rpedrohonorato
-//Pass: 7E2Z15Zv59npjtTL
