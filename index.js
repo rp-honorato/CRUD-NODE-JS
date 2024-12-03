@@ -4,6 +4,8 @@ const server = express();
 //faz com que o express entenda JSON
 server.use(express.json());
 
+const users = [];
+
 //cria rotas
 server.get('/', function (req, res) {
     res.sendFile(__dirname + "/html/index.html"); //exibe arquivo HTML
@@ -24,12 +26,18 @@ server.get('/ola/:nome/:cargo/:cor', (req, res) => {
         "<h3>Sua cor favorita é: " + req.params.cor+ "</h3>"
     );
 
-})
+});
 //
-server.get('/section/:noticia', (req, res) => {
-    res.send(req.params)
-})
+server.get('/usuarios', (req, res) => {
+    res.json(users)
+});
 
+server.post('/usuarios', (req, res) => {
+    users.push(req.body)
+
+    res.send('Ok, deu certo!')
+
+})
 
 //porta
 server.listen(302, () => {
