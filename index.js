@@ -59,4 +59,3 @@ server.post('/usuarios', async (req, res) => {
 server.listen(302, () => {
     console.log("Servidor rodando na URL http://localhost:302/")
 })
-
