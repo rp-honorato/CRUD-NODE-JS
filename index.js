@@ -13,8 +13,6 @@ const __dirname = path.dirname(__filename);
 //faz com que o express entenda JSON
 server.use(express.json());
 
-const users = [];
-
 //cria rotas
 server.get('/', function (req, res) {
     res.sendFile(__dirname + "/html/index.html"); //exibe arquivo HTML
@@ -37,10 +35,11 @@ server.get('/ola/:nome/:cargo/:cor', (req, res) => {
 
 });
 //
-server.get('/usuarios', (req, res) => {
+server.get('/usuarios', async (req, res) => {
+    const users = await prisma.user.findMany()
+
     res.status(200).json(users)
 });
-
 server.post('/usuarios', async (req, res) => {
 
     const user = await prisma.user.create({
