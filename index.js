@@ -57,16 +57,16 @@ server.post('/usuarios', async (req, res) => {
 server.put('/usuarios/:id', async (req, res) => {
 
     console.log(req) //retorna dados da requisição de PUT
-    // await prisma.user.update({
-    //     where: {
-    //         id: req.body.id
-    //     },
-    //     data:{
-    //         email: req.body.email,   
-    //         name: req.body.name,    
-    //         age: req.body.age
-    //     }
-    // })
+    await prisma.user.update({
+        where: {
+            id: req.params.id
+        },
+        data:{
+            email: req.body.email,   
+            name: req.body.name,    
+            age: req.body.age
+        }
+    })
 
     res.status(200).json({ message: "Usuário atualizado com sucesso" });
     
