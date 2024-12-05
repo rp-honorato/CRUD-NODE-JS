@@ -71,6 +71,18 @@ server.put('/usuarios/:id', async (req, res) => {
     res.status(200).json({ message: "Usuário atualizado com sucesso" });
     
 });
+//delete 
+server.delete('/usuarios/:id', async (req, res) => {
+
+    console.log(req) //retorna dados da requisição de PUT
+    await prisma.user.delete({
+        where: {
+            id: req.params.id
+        }
+    })
+
+    res.status(200).json({ message: 'Usuário deletado com sucesso!'});
+});
 
 //porta
 server.listen(302, () => {
